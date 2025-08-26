@@ -9,4 +9,7 @@ public class UserRegistration {
         return lastName.matches("^[A-Z][a-z]{2,}$");
     }
 	
+    public boolean validateEmail(String email) {
+        return email.matches("^[a-zA-Z0-9]+([._+-]?[a-zA-Z0-9]+)*@[a-zA-Z0-9]+\\.[a-zA-Z]{2,4}(\\.[a-zA-Z]{2,})?$");
+    }
 }
