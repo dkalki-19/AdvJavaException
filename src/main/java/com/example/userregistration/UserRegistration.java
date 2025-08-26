@@ -16,4 +16,9 @@ public class UserRegistration {
     public boolean validateMobile(String mobile) {
         return mobile.matches("^[0-9]{2} [0-9]{10}$");
     }
+    
+    public boolean validatePassword(String password) {
+        return password.matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=]).{8,}$");
+    }
+
 }
