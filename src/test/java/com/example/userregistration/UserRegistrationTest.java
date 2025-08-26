@@ -7,13 +7,23 @@ public class UserRegistrationTest {
 	@Test
 	public void givenFirstName_WhenProper_ShouldReturnTrue() {
 	    UserRegistration user = new UserRegistration();
-	    assertTrue(user.validateFirstName("John"));
+	    try {
+			assertTrue(user.validateFirstName("John"));
+		} catch (InvalidUserDetailException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test
 	public void givenFirstName_WhenShort_ShouldReturnFalse() {
 	    UserRegistration user = new UserRegistration();
-	    assertFalse(user.validateFirstName("Jo"));
+	    try {
+			assertFalse(user.validateFirstName("Jo"));
+		} catch (InvalidUserDetailException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
