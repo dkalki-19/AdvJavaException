@@ -8,30 +8,35 @@ import java.util.*;
 
 import static org.junit.Assert.*;
 
+
 @RunWith(Parameterized.class)
 public class EmailParameterizedTest {
 
-    private String email;
-    private boolean expected;
-    private UserRegistration user = new UserRegistration();
+	@Parameterized.Parameters(name = "{index}: {0} => {1}")
+    public static Collection<Object[]> data() {
+        return Arrays.asList(new Object[][]{
+            {"abc@bl.co", true},
+            {"abc.xyz@bl.co.in", true},
+            {"abc-100@abc.net", true},
+            {"abc111@abc.com", true},
+            {"abc@.com", false},
+            {"abc..2002@gmail.com", false},
+            {"abc@%*.com", false},
+            {"abc@gmail.com.1a", false}
+        });
+    }
+
+    private final String email;
+    private final boolean expected;
 
     public EmailParameterizedTest(String email, boolean expected) {
         this.email = email;
         this.expected = expected;
     }
 
-    @Parameterized.Parameters
-    public static Collection<Object[]> emails() {
-        return Arrays.asList(new Object[][]{
-            {"abc@bl.co", true},
-            {"abc.xyz@bl.co.in", true},
-            {"abc@.com", false}
-        });
-    }
-
     @Test
-    public void testEmails() throws Exception {
-        assertEquals(expected, user.validateEmail(email));
+    public void validateEmails_WithLambda() {
+        assertEquals(expected, UserRegistration.EMAIL_VALIDATOR.test(email));
     }
 }
 
