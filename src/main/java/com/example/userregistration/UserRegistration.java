@@ -1,5 +1,12 @@
 package com.example.userregistration;
 
+import java.util.regex.Pattern;
+
+@FunctionalInterface
+interface UserValidation {
+    boolean validate(String input) throws InvalidUserDetailException;
+}
+
 public class UserRegistration {
 	public boolean validateFirstName(String firstName) throws InvalidUserDetailException {
         if (firstName == null || !firstName.matches("^[A-Z][a-z]{2,}$"))
